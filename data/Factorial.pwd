@@ -1,0 +1,12 @@
+Main()[
+	
+	Sahih n^
+	Sahih Fact = 1^
+	Benevis("Enter Number:")^
+	Begir("%d", &n)^
+	ta{n &BM 2}[
+		Fact = Fact Zarb n^
+		YekiPain n^
+	]
+	Benevis(Fact)^
+]

@@ -1,0 +1,12 @@
+Main()[
+
+	Sahih n = 77^
+	Sahih Counter = 1^
+	ta{Counter &KM n}[
+		agar{n Bagimande Counter &MM 0}[
+			Benevis(Counter+1)^
+		]
+		YekiBala Counter^
+	]
+
+]

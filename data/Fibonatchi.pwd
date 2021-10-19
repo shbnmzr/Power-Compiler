@@ -1,0 +1,21 @@
+Main()[
+
+	Sahih n = 0^
+	Benevis("Enter Number of Lines: ")^
+	ta{n &KM 0}[
+		Begir("%d", &n)^
+	]
+	Benevis("\n")^
+	Sahih a = 0^
+	Sahih b = 1^
+	Sahih c^
+	Sahih Counter = 1^
+	ta{Counter &KM n}[
+		Benevis(a)^
+		c = a Jam b^
+		a = b^
+		b = c^
+		YekiBala Counter^
+	]
+
+]

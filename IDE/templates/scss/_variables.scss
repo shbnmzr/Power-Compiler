@@ -1,0 +1,16 @@
+@font-face {
+        font-family: 'Montserrat';
+        src: url('../assets/fonts/Montserrat/Montserrat-Regular.ttf'); 
+        font-weight: normal;
+        font-style: normal;
+}
+@font-face {
+        font-family: 'Roboto';
+        src: url('../assets/fonts/Roboto/Roboto-Regular.ttf'); 
+        font-weight: normal;
+        font-style: normal;
+}
+$colors: (background-color: #F0F0F0, text-color: #000000, operators: #D51347, 
+        keywords: #175D98, comments: #0E9F68, strings: #EC9315);
+$border-style: 1px solid map-get($colors, text-color);
+$fonts: (main-font:'Roboto', secondary-font: 'Montserrat')

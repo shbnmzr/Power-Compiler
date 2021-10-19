@@ -1,0 +1,222 @@
+@import "variables";
+@import "styles.scss";
+
+@mixin modalStyle() {
+  position: fixed;
+  opacity: 0;
+  transform: translateY(-5rem);
+  transition: opacity 300ms ease-out, transform 600ms ease-out;
+  z-index: 2;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+  div {
+    padding-bottom: 0.5rem;
+    font-family: map-get($fonts, secondary-font);
+    font-size: 1.25rem;
+    text-align: center;
+  }
+  @content;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  background-color: map-get($colors, background-color);
+  height: 100vh;
+  body {
+    .backdrop {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      position: fixed;
+      display: none;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .modal {
+      @include modalStyle();
+      display: none;
+      input {
+        font-family: map-get($fonts, main-font);
+        width: 20rem;
+        margin: 0.5rem 0;
+        &:focus {
+          outline: none;
+        }
+      }
+      .modal__action {
+        @extend .options-button;
+        &:hover,
+        &:active {
+          border-color: map-get($colors, text-color);
+          background: map-get($colors, background-color);
+          color: map-get($colors, text-color);
+        }
+      }
+    }
+    .options-container {
+      @include modalStyle();
+      display: none;
+      .option {
+        @extend .options-button;
+        margin: 0.5rem;
+      }
+      .option-positive {
+        &:hover,
+        &:active {
+          border-color: #2ddf5c;
+          background: #2ddf5c;
+          color: map-get($colors, text-color);
+        }
+      }
+      .option-negative {
+        &:hover,
+        &:active {
+          border-color: #ff1b68;
+          background: #ff1b68;
+          color: map-get($colors, text-color);
+        }
+      }
+    }
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .main-header {
+      display: grid;
+      grid-template-columns: 15% 25%;
+      grid-template-rows: 1;
+      padding: 0.5rem;
+      border-bottom: $border-style;
+      .main-header__section {
+        display: flex;
+        .section__items {
+          display: flex;
+          list-style: none;
+          align-items: center;
+          .section__item {
+            padding-right: 0.5rem;
+            display: flex;
+            align-items: center;
+            #open-file {
+              display: none;
+            }
+            #open-file-label {
+              @extend .main-button;
+            }
+            button {
+              @extend .main-button;
+            }
+          }
+        }
+      }
+    }
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 65% 35%;
+      position: relative;
+      .code-editor {
+        display: flex;
+        grid-column: 1/2;
+        #code-area {
+          width: 100%;
+          height: 100%;
+          background-color: white;
+          border: $border-style;
+          &:focus {
+            outline: none;
+          }
+        }
+        div.numberedtextarea-wrapper {
+          position: relative;
+          flex: 1;
+        }
+        div.numberedtextarea-wrapper textarea {
+          @extend .code-style;
+          display: block;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          outline: none;
+          resize: none;
+          white-space: pre;
+          overflow-wrap: normal;
+          overflow-x: scroll;
+        }
+        div.numberedtextarea-line-numbers {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 20px;
+          padding-bottom: 1rem;
+          border: $border-style;
+          color: map-get($colors, text-color);
+          background-color: map-get($colors, background-color);
+          overflow: hidden;
+        }
+        div.numberedtextarea-number {
+          text-align: center;
+          vertical-align: middle;
+          line-height: 1.25rem;
+          font-family: map-get($fonts, secondary-font);
+          font-size: 8px;
+        }
+      }
+      .console {
+        grid-column: 2/3;
+      }
+      .main__section {
+        padding: 4px;
+        width: 100%;
+        height: 100%;
+        textarea {
+          height: 100%;
+          width: 100%;
+          height: 100%;
+          outline: none;
+          resize: none;
+          border: $border-style;
+        }
+        iframe {
+          height: 100%;
+          width: 100%;
+          height: 100%;
+          outline: none;
+          resize: none;
+          border: $border-style;
+          background-color: white;
+        }
+      }
+    }
+
+    footer {
+      display: grid;
+      p {
+        padding-left: 8px;
+        @extend .text-style;
+      }
+    }
+  }
+}
+.open {
+  display: flex !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}

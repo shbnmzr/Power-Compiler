@@ -1,0 +1,277 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat/Montserrat-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto/Roboto-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat/Montserrat-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto/Roboto-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+#CompiledResult {
+  height: 100%;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  resize: none;
+  border: 1px solid #000000;
+  background-color: white;
+}
+.main-button, html body .main-header .main-header__section .section__items .section__item button, html body .main-header .main-header__section .section__items .section__item #open-file-label {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.main-button:focus, html body .main-header .main-header__section .section__items .section__item button:focus, html body .main-header .main-header__section .section__items .section__item #open-file-label:focus {
+  outline: none;
+}
+
+.code-style, html body main .code-editor div.numberedtextarea-wrapper textarea {
+  font-family: "Roboto";
+  line-height: 1.25rem;
+  font-size: 1rem;
+}
+
+.text-style, html body footer p {
+  font-family: "Montserrat";
+  font-size: 1rem;
+  color: #000000;
+}
+
+.options-button, html body .options-container .option, html body .modal .modal__action {
+  margin-top: 0.5rem;
+  width: 6rem;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #F0F0F0;
+  background-color: #000000;
+  font-family: "Montserrat";
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 0.5rem 0.5rem;
+}
+.options-button:focus, html body .options-container .option:focus, html body .modal .modal__action:focus {
+  outline: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #F0F0F0;
+  height: 100vh;
+}
+html body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+html body .backdrop {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+html body .modal {
+  position: fixed;
+  opacity: 0;
+  transform: translateY(-5rem);
+  transition: opacity 300ms ease-out, transform 600ms ease-out;
+  z-index: 2;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+html body .modal div {
+  padding-bottom: 0.5rem;
+  font-family: "Montserrat";
+  font-size: 1.25rem;
+  text-align: center;
+}
+html body .modal input {
+  font-family: "Roboto";
+  width: 20rem;
+  margin: 0.5rem 0;
+}
+html body .modal input:focus {
+  outline: none;
+}
+html body .modal .modal__action:hover, html body .modal .modal__action:active {
+  border-color: #000000;
+  background: #F0F0F0;
+  color: #000000;
+}
+html body .options-container {
+  position: fixed;
+  opacity: 0;
+  transform: translateY(-5rem);
+  transition: opacity 300ms ease-out, transform 600ms ease-out;
+  z-index: 2;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+html body .options-container div {
+  padding-bottom: 0.5rem;
+  font-family: "Montserrat";
+  font-size: 1.25rem;
+  text-align: center;
+}
+html body .options-container .option {
+  margin: 0.5rem;
+}
+html body .options-container .option-positive:hover, html body .options-container .option-positive:active {
+  border-color: #2ddf5c;
+  background: #2ddf5c;
+  color: #000000;
+}
+html body .options-container .option-negative:hover, html body .options-container .option-negative:active {
+  border-color: #ff1b68;
+  background: #ff1b68;
+  color: #000000;
+}
+html body .main-header {
+  display: grid;
+  grid-template-columns: 15% 25%;
+  grid-template-rows: 1;
+  padding: 0.5rem;
+  border-bottom: 1px solid #000000;
+}
+html body .main-header .main-header__section {
+  display: flex;
+}
+html body .main-header .main-header__section .section__items {
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+html body .main-header .main-header__section .section__items .section__item {
+  padding-right: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+html body .main-header .main-header__section .section__items .section__item #open-file {
+  display: none;
+}
+html body main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 65% 35%;
+  position: relative;
+}
+html body main .code-editor {
+  display: flex;
+  grid-column: 1/2;
+}
+html body main .code-editor #code-area {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: 1px solid #000000;
+}
+html body main .code-editor #code-area:focus {
+  outline: none;
+}
+html body main .code-editor div.numberedtextarea-wrapper {
+  position: relative;
+  flex: 1;
+}
+html body main .code-editor div.numberedtextarea-wrapper textarea {
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+  resize: none;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: scroll;
+}
+html body main .code-editor div.numberedtextarea-line-numbers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  padding-bottom: 1rem;
+  border: 1px solid #000000;
+  color: #000000;
+  background-color: #F0F0F0;
+  overflow: hidden;
+}
+html body main .code-editor div.numberedtextarea-number {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.25rem;
+  font-family: "Montserrat";
+  font-size: 8px;
+}
+html body main .console {
+  grid-column: 2/3;
+}
+html body main .main__section {
+  padding: 4px;
+  width: 100%;
+  height: 100%;
+}
+html body main .main__section textarea {
+  height: 100%;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  resize: none;
+  border: 1px solid #000000;
+}
+
+html body footer {
+  display: grid;
+}
+html body footer p {
+  padding-left: 8px;
+}
+
+.open {
+  display: flex !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*# sourceMappingURL=main.css.map */

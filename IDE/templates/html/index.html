@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+    <title>Power IDE</title>
+    <script>
+        $(document).ready(function(){
+            $("#compile").click(function(){
+                $.ajax({
+                    url:"/run",
+                    method:"POST",
+                    data:{
+                        "Code": $("#code-area").val(),
+                    },
+                    success:function(e){
+                        $("#CompiledResult").html(e);
+                    },
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="backdrop"></div>
+    <div class="modal">
+        <div>Enter Name: </div>
+        <input type="text" id="file-name" />
+        <button class="modal__action" id="save" type="button">Save</button>
+    </div>
+    <div class="options-container">
+        <div>Save changes?</div>
+        <div class="options">
+            <button class="option option-positive" id="positive">Yes</button>
+            <button class="option option-negative" id="negative">No</button>
+        </div>
+    </div>
+    <header class="main-header">
+        <section class="main-header__explore main-header__section">
+            <ul class="main-header__explore-buttons section__items">
+                <li class="main-header__explore-button section__item">
+                    <label for="open-file" id="open-file-label" title="Open File">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px"
+                            height="18px">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z" />
+                        </svg>
+                    </label>
+                    <input id="open-file" type="file" accept=".txt .pwd" />
+                </li>
+                <li class="main-header__explore-button section__item">
+                    <button id="new-file" title="New File">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px"
+                            height="18px">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 14h-3v3h-2v-3H8v-2h3v-3h2v3h3v2zm-3-7V3.5L18.5 9H13z" />
+                        </svg>
+                    </button>
+                </li>
+                <li class="main-header__explore-button section__item">
+                    <button id="save-button" title="Save">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px"
+                            height="18px">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z" />
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </section>
+        <section class="main-header__code main-header__section">
+            <ul class="section__items">
+                <li class="main-header__code-button section__item">
+                    <button id="compile" title="Compile and Run">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px"
+                            height="18px">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+                        </svg>
+                    </button>
+                </li>
+                <li class="main-header__code-button section__item">
+                    <button id="terminate" title="Terminate">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px"
+                            height="18px">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </section>
+    </header>
+    <main>
+        <section class="code-editor main__section" title="Code Editor">
+            <textarea id="code-area" oninput="countWord()"></textarea>
+        </section>
+        <section class="console main__section" title="Console" id="CompiledResult">
+
+        </section>
+    </main>
+    <footer>
+        <p>Word Count: <span id="wordcount"></span></p>
+    </footer>
+    <script>
+        function countWord() { 
+            var words = document.getElementById("code-area").value; 
+            var count = 0; 
+            var split = words.split(' '); 
+            for (var i = 0; i < split.length; i++) { 
+                if (split[i] != "") { 
+                    count += 1; 
+                } 
+            } 
+            document.getElementById("wordcount").innerHTML = count;
+        }
+    </script>
+    <script src="{{ url_for('static',filename='javascript/index.js') }}" defer></script>
+    <script src="{{ url_for('static',filename='javascript/features.js') }}" defer></script>
+    <script src="{{ url_for('static',filename='javascript/SaveFile.js') }}" defer></script>
+    <script src="{{ url_for('static',filename='javascript/jquery.numberedtextarea.js') }}" defer></script>
+</body>
+</html>

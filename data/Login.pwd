@@ -1,0 +1,24 @@
+Main()[
+
+	Benevis("NOTE: Correct Password would be <abc123>\n")^
+	Sahih Counter = 0^
+	Reshte Password = "abcd"^
+	Reshte UserInput^
+	Password = "abc123"^
+	Bool LoggedIn = Dorost^
+	ta{UserInput &NM Password}[
+		Benevis("Enter Your Password: ")^
+		Begir("%s", &UserInput)^
+		agar{Counter &B 5}[
+			Benevis("Namovafaq")^
+			LoggedIn = Qalat^
+			break^
+		]
+		YekiBala Counter^
+	]
+
+	agar{LoggedIn}[
+		Benevis("Movafaq!")^
+	]
+	
+]
