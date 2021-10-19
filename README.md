@@ -18,7 +18,7 @@ Power Compiler is run from within a python virtual environment for your project.
  
  2. Clone this project from the repository :
 
-        $ git clone git@bitbucket.org:Underdash/compiler-design.git
+        $ git clone https://github.com/shbnmzr/Power-Compiler.git
 
 3. Run Exe.py file to start up the Power IDE.
 ### Run Test.pwd File
